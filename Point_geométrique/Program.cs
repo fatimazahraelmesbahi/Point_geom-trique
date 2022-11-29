@@ -8,44 +8,59 @@ namespace Point_geométrique
 {
     public class Point
     {
-        private int X;
-        private int Y;
-        private int originalX;
-        private int originalY;
-        public void Reset()
+        private double Abscisse;            
+        private double Ordonne;            
+ 
+        public double getAbscisse()         
         {
-            X = originalX;
-            Y = originalY;
+            return Abscisse;
         }
-        public Point(int x,int y)
+ 
+        public void setAbscisse(double a)  
         {
-            X = x;
-            Y = y;
-            originalX = X;
-            originalY = Y;
+            Abscisse = a;
         }
-        public void MoveX(int cord)
+ 
+        public double getOrdonne()         
         {
-            X = X + cord;
+            return Ordonne;
         }
-        public void MoveY(int cord)
+ 
+        public void setOrdonne(double o)    
         {
-            Y = Y + cord;
+            Ordonne = o;
         }
-        public string GetLocation()
+ 
+        public Point()                     
         {
-            return string.Format("location de cette point est {0},{1}", X, Y);
+        }
+ 
+        public Point(double a, double o)   
+        {
+            Abscisse = a;
+            Ordonne = o;
+        }
+ 
+        public double Norme()             
+        {
+            return Math.Sqrt(Abscisse * Abscisse + Ordonne * Ordonne);
         }
     }
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            Point p = new Point(12, 13);
-            p.MoveX(120);
-            p.MoveY(130);
-            string s = p.GetLocation();
-            p.Reset();
+            double a, o,n;
+            Point p = new Point();                  
+            Console.Out.Write("Donner l'abscisse: ");
+            a = double.Parse(Console.In.ReadLine());
+            Console.Out.Write("Donner l'ordonne: ");
+            o = double.Parse(Console.In.ReadLine());
+            p.setAbscisse(a);                       
+            p.setOrdonne(o);
+            n=p.Norme();
+            Console.Out.WriteLine("La norme du point (" + p.getAbscisse() + "," + p.getOrdonne() + ") est: " + n);
+            Console.ReadKey();     
         }
     }
 }
